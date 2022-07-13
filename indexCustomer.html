@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/assets/bootstrap-4.0.0/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="/assets/sweetalert2/v2/sweetalert2.min.css">
 
 </head>
 <body>
@@ -57,7 +57,7 @@
                         <th>Phone</th>
                         <th>Address</th>
                         <th>Balance</th>
-                        <th class="text-center" colspan="2">Action</th>
+                        <th class="text-center" colspan="4">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -99,6 +99,12 @@
                             <input type="text" id="addressUp" class="form-control">
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <label for="phone">Balance</label>
+                            <input type="tel" id="balanceUp"  readonly class="form-control">
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -109,15 +115,129 @@
         </div>
       </div>
 
+     <!-- Modal Deposits -->
+      <div class="modal fade " id="mdDeposits" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal Deposit</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmDeposits">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="hidden" id="customerIdDe">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullNameDe" readonly class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="email">Email</label>
+                            <input type="email" id="emailDe" readonly class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phoneDe" readonly class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="address">Address</label>
+                            <input type="text" id="addressDe" readonly class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <label for="phone">Balance</label>
+                            <input type="number" id="balanceDe" readonly class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="transactionAmount">Transaction Amount</label>
+                            <input type="number" id="transactionAmount" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="btnDeposits" class="btn btn-outline-primary">Deposits</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+         <!-- Modal Withdraw -->
+    <div class="modal fade " id="mdWithdraw" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal Withdraw</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmWithdraw">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="hidden" id="customerIdWd">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullNameWd" readonly class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="email">Email</label>
+                            <input type="email" id="emailWd" readonly class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phoneWd" readonly class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="address">Address</label>
+                            <input type="text" id="addressWd" readonly class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <label for="phone">Balance</label>
+                            <input type="number" id="balanceWd" readonly class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="transactionAmount">Transaction Amount</label>
+                            <input type="number" id="transactionAmount" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="btnWithdraw" class="btn btn-outline-primary">Withdraw</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <script src="/assets/js/jquery-3.6.0.min.js"></script>
     <script src="/assets/bootstrap-4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/sweetalert2/v2/sweetalert2.js"></script>
     <script src="/assets/js/app.js"></script>
-
+    
     <script>
         
         let customers = [];
         let customer = new Customer();
+
+        let deposits = [];
+        let deposit = new Deposit(); 
+
+        let withdraws = [];
+        let withdraw = new Withdraw(); 
         
+
         customer.id = 1;
         customer.fullName ='NVA';
         customer.email ='nva@gmail.com';
@@ -147,18 +267,25 @@
                             <button type="button" data-id="${item.id}" class="btn btn-outline-secondary edit"> Edit </button>
                         </td>
                         <td>
-                                <button type="button" data-id="${item.id}" class="btn btn-outline-danger deactive">Deactive</button>
-                            </td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-primary deposits">Deposits </button>
+                        </td>
+                        <td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-success withdraws">Withdraw </button>
+                        </td>
+                        <td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-danger deactive">Deactive</button>
+                        </td>
                     </tr>
                     `;
 
                 $('#tbCustomer tbody').prepend(str);
 
+                
              });
 
            
-            OnEditModal()
-
+             handleGroupShowModal()
+             handleShowDeposits()
             })
         }
 
@@ -166,9 +293,9 @@
         loadCustomers();
 
 
-        let id = 1;
-        
-        //Sự kiện thêm mới ở nút Create
+        // let id = 1;
+
+        //Sự kiện thêm mới ở nút Create, truyền thông tin từ thẻ form vào Đối tượng Customer để nhận giá trí đó từ thẻ input
         $('#btnCreate').on('click' , function () {
 
             let fullName = $('#fullName').val();
@@ -195,17 +322,33 @@
                     <td> ${item.email} </td>
                     <td> ${item.phone} </td>
                     <td> ${item.address} </td>
-                    <td> ${item.balance} </td>
+                    <td> ${item.balance } </td>
                     <td>
-                        <button type="button"  data-id="${item.id}" class="btn btn-outline-secondary edit">Edit</button>
-                    </td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-secondary edit"> Edit </button>
+                        </td>
+                        <td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-primary deposits">Deposits </button>
+                        </td>
+                        <td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-success withdraws">Withdraw </button>
+                        </td>
+                        <td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-danger deactive">Deactive</button>
+                        </td>
+                    
                 </tr>
                 `;
 
                 $('#tbCustomer tbody').prepend(str);
 
-                OffEditModal()
-                OnEditModal()
+                App.SweetAlert.showAlertSuccess("Create success");
+                
+                unbinAll()
+                handleGroupShowModal()
+
+                .fail((error)=>{
+                    App.SweetAlert.showAlertError("Create fail");
+                })
                
             })
         });
@@ -219,7 +362,8 @@
             customer.email = $("#emailUp").val();
             customer.phone = $("#phoneUp").val();
             customer.address = $("#addressUp").val();
-
+            customer.balance = $("#balanceUp").val();
+            
             $.ajax({
                 "type": "PUT",
                 "url": "http://localhost:3000/customers/" + customer.id,
@@ -227,44 +371,221 @@
             })
 
             .done((item) =>{
-            
                 //Cập nhật lại theo id, và thêm lại các phần tử mới truyền vào lại nó để cập nhật
                 let currentRow = $('#tr_' + item.id);
 
                 let updateRow=`
                     <tr id="tr_${item.id}">
-                        <td> ${item.id} </td>
+                        <td> ${item.id}  </td>
                         <td> ${item.fullName} </td>
                         <td> ${item.email} </td>
                         <td> ${item.phone} </td>
                         <td> ${item.address} </td>
                         <td> ${item.balance} </td>
                         <td>
-                            <button type="button"  data-id="${item.id}" class="btn btn-outline-secondary edit">Edit</button>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-secondary edit"> Edit </button>
+                        </td>
+                        <td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-primary deposits">Deposits </button>
+                        </td>
+                        <td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-success withdraws">Withdraw </button>
+                        </td>
+                        <td>
+                            <button type="button" data-id="${item.id}" class="btn btn-outline-danger deactive">Deactive</button>
                         </td>
                     </tr>
                 `;
-                currentRow.replaceWith(updateRow);
+                  //Cập nhật lại giá trị id vào lại để hiện thị giá trị mới đc cập nhật
+                  currentRow.replaceWith(updateRow);
 
                   //Khi cập nhật thành công thì ta tiến hành đóng modal lại
                   $('#mdUpdate').modal('hide');
-
-
-                  //Ta tiến hành gọi hàm để tiếp tục thực hiện   
-                 
-                  OnEditModal();
-                
+   
+                  //sweetalert2 hiển thị khi thành công   
+                  App.SweetAlert.showAlertSuccess("Update success");
+                  
+                  //Ta tiến hành gọi hàm để tiếp tục thực hiện 
+                  unbinAll()
+                  handleGroupShowModal()
             })
 
-            // .fail((error)=>{
+            .fail((error)=>{
+                App.SweetAlert.showAlertError("Update fail");
+            })
 
-            // })
+        })
+        
+        //Sự kiện chuyển tiền deposits vào nút Deposits
+        $('#btnDeposits').on('click', function(){
+            //Lấy giá trị đã tạo ở customer, truyền vào lại ô hiển thị thông tin ở deposits 
+            customer.id = $("#customerIdDe").val();
+            customer.fullName = $('#fullNameDe').val();
+            customer.email = $('#emailDe').val();
+            customer.phone = $('#phoneDe').val();
+            customer.address = $('#addressDe').val();
+            customer.balance = Number($("#balanceDe").val()) + Number($("#transactionAmount").val());
 
+            $.ajax({
+                "type": "PUT",
+                "url": "http://localhost:3000/customers/" + customer.id,
+                "data": customer,
+            })
+            .done((item)=>{
+                let dataNow = new Date();
+                delete deposit.id;
+                deposit.customerId = item.id;
+                deposit.transactionAmount = $("#transactionAmount").val();
+                deposit.createdAt = dataNow.getFullYear()+ "-" + dataNow.getMonth() + "-" + dataNow.getDate();
+
+                $.ajax({
+                    "type": "POST",
+                    "url": "http://localhost:3000/deposits/",
+                    "data": deposit
+                })
+                .done((item1)=>{
+                    let currentRow = $('#tr_' + item.id);
+
+                    let updateRow =`
+                        <tr id="tr_${item.id}">
+                            <td> ${item.id} </td>
+                            <td> ${item.fullName} </td>
+                            <td> ${item.email} </td>
+                            <td> ${item.phone} </td>
+                            <td> ${item.address} </td>
+                            <td> ${item.balance} </td>
+                            <td>
+                                 <button type="button" data-id="${item.id}" class="btn btn-outline-secondary edit"> Edit </button>
+                            </td>
+                            <td>
+                                <button type="button" data-id="${item.id}" class="btn btn-outline-primary deposits">Deposits </button>
+                            </td>
+                            <td>
+                                <button type="button" data-id="${item.id}" class="btn btn-outline-success withdraws">Withdraw </button>
+                            </td>
+                            <td>
+                                <button type="button" data-id="${item.id}" class="btn btn-outline-danger deactive">Deactive</button>
+                            </td>
+                        </tr>
+                 `;
+                 currentRow.replaceWith(updateRow);
+                
+                // Nhả giá trị tiền lại   
+                 $('#transactionAmount').val("");
+
+                //  customer.balance = 0;
+                //Đóng lại khi thành công   
+                 $('#mdDeposits').modal('hide')
+            
+              
+                App.SweetAlert.showAlertSuccess("The deposits success");
+
+                unbinAll();
+                handleGroupShowModal();
+            })
+
+                .fail((error) =>{
+                    App.SweetAlert.showAlertError("Invalid deposits fail");
+                })
+
+            })
+
+            .fail((error) =>{
+                App.SweetAlert.showAlertError("Invalid customer fail");
+            })
         })
 
 
+        $('#btnWithdraw').on('click', function(){
+            
+            customer.id = $("#customerIdWd").val();
+            customer.fullName = $('#fullNameWd').val();
+            customer.email = $('#emailWd').val();
+            customer.phone = $('#phoneWd').val();
+            customer.address = $('#addressWd').val();
+
+            customer.balance = Number($("#balanceWd").val()) + Number($("#transactionAmount").val());
+
+            $.ajax({
+                "type": "PUT",
+                "url": "http://localhost:3000/customers/" + customer.id,
+                "data": customer,
+            })
+            .done((item)=>{
+                let dataNow = new Date();
+                delete withdraw.id;
+                withdraw.customerId = item.id;
+                withdraw.transactionAmount = $("#transactionAmount").val();
+               
+                withdraw.createdAt = dataNow.getFullYear()+ "-" + dataNow.getMonth() + "-" + dataNow.getDate();
+                
+                $.ajax({
+                    "type": "POST",
+                    "url": "http://localhost:3000/withdraws/",
+                    "data": withdraw
+                })
+                .done((item1)=>{
+
+                    let currentRow = $('#tr_' + item.id);
+
+                    let updateRow =`
+                        <tr id="tr_${item.id}">
+                            <td> ${item.id} </td>
+                            <td> ${item.fullName} </td>
+                            <td> ${item.email} </td>
+                            <td> ${item.phone} </td>
+                            <td> ${item.address} </td>
+                            <td> ${item.balance} </td>
+                            <td>
+                                 <button type="button" data-id="${item.id}" class="btn btn-outline-secondary edit"> Edit </button>
+                            </td>
+                            <td>
+                                <button type="button" data-id="${item.id}" class="btn btn-outline-primary deposits">Deposits </button>
+                            </td>
+                            <td>
+                                <button type="button" data-id="${item.id}" class="btn btn-outline-success withdraws">Withdraw </button>
+                            </td>
+                            <td>
+                                <button type="button" data-id="${item.id}" class="btn btn-outline-danger deactive">Deactive</button>
+                            </td>
+                        </tr>
+                 `;
+                    currentRow.replaceWith(updateRow);
+                        
+                    // Nhả giá trị tiền lại   
+                    $('#transactionAmount').val("");
+
+                    $("#mdWithdraw").modal('hide')
+
+                    App.SweetAlert.showAlertSuccess("The withdraw success");
+
+                    unbinAll();
+                    handleGroupShowModal();
+                }) 
+
+                    .fail((error) =>{
+                        App.SweetAlert.showAlertError("Invalid withdraw fail");
+                    })
+                
+            })
+
+            .fail((error) =>{
+                App.SweetAlert.showAlertError("Invalid withdraw fail");
+            })
+        })
+    
+
+
+        
+        function handleGroupShowModal() {
+            handleShowUpdateModal();
+            handleShowDeposits();
+            handleShowWithdraws();
+            handleConfirmDelete();
+        }
+        
         //Edit theo id, và truyền các giá trị đó vào các thẻ input, tìm id theo server 3000 để lấy đc thông tin ra
-        function OnEditModal(){
+        function handleShowUpdateModal(){
             $('.edit').on('click', function(){
                 let id = $(this).data('id');
         
@@ -279,6 +600,7 @@
                     $("#emailUp").val(data.email);
                     $("#phoneUp").val(data.phone);
                     $("#addressUp").val(data.address);
+                    $("#balanceUp").val(data.balance)
                     
                     $('#mdUpdate').modal('show')
                     
@@ -292,9 +614,119 @@
         }
 
 
-        function OffEditModal(){
-            $('.edit').off() 
+        function handleShowDeposits(){
+            $('.deposits').on('click', function(){
+                let id = $(this).data('id');
+
+                $.ajax({
+                    "type": "GET",
+                    "url": "http://localhost:3000/customers/" + id
+                })
+                .done((data) =>{
+                    $("#customerIdDe").val(data.id);
+                    $("#fullNameDe").val(data.fullName);
+                    $("#emailDe").val(data.email);
+                    $("#phoneDe").val(data.phone);
+                    $("#addressDe").val(data.address);
+                    $("#balanceDe").val(data.balance);
+
+                    $('#mdDeposits').modal('show')
+                    
+                })
+
+                .fail((error) =>{
+                    alert("Fail")
+                })
+        })
+        }      
+
+        function handleShowWithdraws(){
+            $('.withdraws').on('click', function(){
+
+                let id = $(this).data('id');
+
+                $.ajax({
+                    "type": "GET",
+                    "url": "http://localhost:3000/customers/" + id
+                })
+                .done((data) =>{
+                    $("#customerIdWd").val(data.id);
+                    $("#fullNameWd").val(data.fullName);
+                    $("#emailWd").val(data.email);
+                    $("#phoneWd").val(data.phone);
+                    $("#addressWd").val(data.address);
+                    $("#balanceWd").val(data.balance);
+
+                    $('#mdWithdraw').modal('show')
+                        
+                    })
+            })
+                // .fail((error) =>{
+                //     alert("Fail")
+                // })
         }
+
+
+        //Hiển thị thông báo khi delete, sự kiện click vào nút delete
+        function handleConfirmDelete(){
+            $('.deactive').on('click', function(){
+
+                //Tìm theo id để delete, tương tự như hàm edit 
+                let id = $(this).data('id');
+
+                App.SweetAlert.showConfirmDelete()
+            
+                .then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            "type" : "GET",
+                            "url": "http://localhost:3000/customers/" + id
+
+                        })
+                        .done((data) =>{
+                            customer = data;
+                            customer.deleted = 1;
+
+                            $.ajax({
+                                "type":"PUT",
+                                "url": "http://localhost:3000/customers/" + id,
+                                "data": customer
+                            })
+                                .done((data) => {
+                                
+                                    App.SweetAlert.showAlertSuccess("The customer has been deactive")
+                            
+                                    //Khi thành công thực hiện xóa luôn dòng có id đấy, dùng hàm remove
+                                    $('#tr_' + id).remove();
+
+                                })
+
+                                .fail((errors) =>{
+                                    App.SweetAlert.showAlertError("Deactive customer fail")
+                                })
+
+                        })
+
+
+                        .fail((error) =>{
+                        
+                            App.SweetAlert.showAlertError("Invalid customer fail")
+
+                        })
+                 
+                }      
+             })
+            })
+        }
+
+        function unbinAll(){
+            $('.edit').off() 
+            $('.deactive').off() 
+            $('.deposits').off()
+        }
+
+       
        
 
         
@@ -309,9 +741,3 @@
 
 </html>
 
-
-
-
-
-
- 
