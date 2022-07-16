@@ -36,8 +36,24 @@ class Withdraw {
         this.updatedAt = updatedAT;
         this.updatedBy = updatedBy;
         this.deleted = deleted;
+    } 
+}
+
+class Transfer{
+    constructor(id,createdAt,createdBy = "",deleted = 0,updatedAt = "",updatedBy = "",fees = 10,feesAmount,transactionAmount,transferAmount,recipientId,senderId){
+        this.id = id;
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
+        this.deleted = deleted;
+        this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
+        this.fees = fees;
+        this.feesAmount = feesAmount;
+        this.transferAmount = transferAmount;
+        this.transactionAmount = transactionAmount;
+        this.senderId = senderId;
+        this.recipientId = recipientId;
     }
-    
 }
 
 class App {

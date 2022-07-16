@@ -1,0 +1,11 @@
+.modal-alert-danger {
+    padding: 10px 35px;
+    margin-bottom: 15px;
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+.modal-alert-danger ul {
+    margin-bottom: 0;
+}
