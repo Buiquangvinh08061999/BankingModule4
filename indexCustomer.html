@@ -14,7 +14,7 @@
     <div class="container">
       
         <h1>Customer information</h1>
-           
+        <h1>Ahihi</h1>
         <form id="frmCreate">
             <div class="row">
                 <div class="col-lg-6 ">
@@ -704,8 +704,7 @@
                 transactionAmount:{
                     required: true,
                     number: true
-                    // isNumberWithSpace: true,
-                    
+                    // isNumberWithSpace: true,          
                 }
             },
 
@@ -742,7 +741,6 @@
         // $.validator.addMethod("isNumberWithSpace", function (value, element) {
         //     return this.optional(element) || /^\s*[0-9,\s]+\s*$/i.test(value);
         // }, "Vui lòng nhập giá trị số");
-
 
 
         //Số 5: Rút tiền tài khoản ta tìm theo ID, và PUT để lấy giá trị id về, Post để đẩy lên giá trị nạp tiền thành công lên lại server hiện thị thông tin lại ở tbody
@@ -917,6 +915,7 @@
          }
 
         function handleShowTransfers(){
+
             $('.transfers').on('click', function(){
                 let customerId = $(this).data('id');
                 $('#recipientIdTrf').empty();
@@ -1058,7 +1057,7 @@
                     App.SweetAlert.showAlertError("Invalid sender ID");
                 })
             })
-
+            
             getRecipientById(recipientId).then(function(){
 
                 recipient.balance = Number(recipient.balance) + transferAmount;
